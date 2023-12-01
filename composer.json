@@ -1,0 +1,25 @@
+
+
+{
+    "name": "gabi/bienes-raices-php",
+    "description": "creando un proyecto",
+    "type": "project",
+ 
+    "authors": [
+        {
+            "name": "Gabriel",
+            "email": "gabyiy2000@hotmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    },
+    "autoload":{
+        "psr-4":{
+            "Model\\":"./models",
+            "MVC\\":"./",
+            "Controllers\\":"./controllers"
+
+        }
+    }
+}
