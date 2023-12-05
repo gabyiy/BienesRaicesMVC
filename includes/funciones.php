@@ -8,7 +8,7 @@
 define("TEMPLATES_URL",__DIR__ ."/templates");
 
 define("FUNCIONES_URL", __DIR__."funciones.php");
-define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
+define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . "/imagenes/");
 
 
 
@@ -86,4 +86,22 @@ switch($codigo){
         break;
 }
 return $mensaje;
+}
+
+//functia asta o folosim pentru a vedea daca id este valid in functia actualizar de exemplu
+ function validarOredirectionar(string $url){
+    
+//Aici scoatem id pe care il primim din index.php 
+$id = $_GET["id"];
+//Iar aici ii facem un filter la id pentru a fi sigur ca este de tip int
+
+$id = filter_var($id,FILTER_VALIDATE_INT);
+
+
+//si daca nu avem un id il redirectionam care admin
+
+if(!$id){
+header("Location: {$url}");
+}
+return $id;
 }

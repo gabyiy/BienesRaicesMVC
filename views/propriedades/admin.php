@@ -12,7 +12,7 @@
  <?php  }  ?>
 <?php } ?>
 
-        <a href="/propriedades/crear.php" class="boton boton-verde">Nueva Propriedad</a>
+        <a href="/propriedades/crear" class="boton boton-verde">Nueva Propriedad</a>
         <a href="/vendedores/crear.php" class="boton boton-amarillo">Nuevo(a) Vendedor</a>
 
         <h2>Propriedades</h2>
@@ -50,7 +50,7 @@
             </form>
 
                     <!-- Asa specificam la proprieda vrem sa merge ca sa actualizam trecandui idul -->
-                    <a href="/admin/propriedades/actualizar.php?id=<?php echo $propriedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                    <a href="/propriedades/actualizar?id=<?php echo $propriedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
         </td>
             </tr>
             <?php endforeach; ?>

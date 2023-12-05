@@ -1,6 +1,6 @@
 
 <main class="contenedor seccion">
-        <h1>Crear</h1>
+        <h1>Actualizar Propriedad</h1>
         <?php 
         //facem for echo ca sa faca un loop prin toate ororile
      foreach($errores as $error): ?>
@@ -9,7 +9,7 @@
       <?php endforeach ;?>
         <form class="formulario" method="POST" enctype="multipart/form-data">
         <?php include  __DIR__ . "/formulario.php"; ?>
-        <input type="submit" value="Crear Proprieda" class="boton boton-verde">
+        <input type="submit" value="Actualizar Propriedad Proprieda" class="boton boton-verde">
 
         </form>
 
