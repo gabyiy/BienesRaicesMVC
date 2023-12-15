@@ -105,16 +105,56 @@ $errores = Propriedad::getErrores();
     }public static function actualizar(Router $router){
 
         //asa scoate id din functie care se afla in includes temlates
-       $id=validarTipoContenido("/admin");
+       $id=validarOredirectionar("/admin");
 
         $propriedad =  Propriedad::find($id);
-        $vendedores = new Vendedor();
+        $vendedores = Vendedor::all();
+        $errores = Propriedad::getErrores();
+
+        //Pentru a actualiza datele
+
+        //folosim server pentru a obtine mai detaliate cand folosi var_dump($_FILES, sau $_POST)
+if($_SERVER["REQUEST_METHOD"]=== "POST"){
+
+    //Asignam  ce avem in arrayul propriedad din formular_propriedades
+    $args =$_POST["propriedad"];
 
 
+    $propriedad->sincronizar($args);
+
+    //revizam ca nu avem nici o erroare
+
+    $errores = $propriedad->validar();
+
+//validam upload arhive
+
+$nombreImagen =md5(uniqid(rand(),true)) . ".jpg";
+
+
+if ($_FILES['propriedad']['tmp_name']['imagen']){
+    $image =  Image::make($_FILES['propriedad']['tmp_name']['imagen'])->fit(800,600);
+    //iar aici folosim functia creata in propriedades pentru a trimite imaginea ca parametru care este nombreimagen
+    $propriedad->setImagen($nombreImagen);
+    
+    }
+
+if(empty($errores)){
+    //salvam imaginea
+    if ($_FILES['propriedad']['tmp_name']['imagen']){
+
+        $image ->save(CARPETA_IMAGENES . $nombreImagen);
+    }
+//folosim exit cand vrem sa oprim fluxu de informati in php(sa verificam datele introdude de ex cu var_dump)
+$propriedad->guardar();
+ 
+
+}
+}
         $router->render("propriedades/actualizar",[
 
 
             "propriedad"=>$propriedad,
+            "errores"=>$errores,
 
             "vendedores"=>$vendedores,
 

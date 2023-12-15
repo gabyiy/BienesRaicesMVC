@@ -30,7 +30,7 @@ class Propriedad extends ActiveRecord{
     {
        //si asa adaugam datele in constrcutor, si in caz ca nu avem date poate fi un string gol
        //cand aveam functi publice folosim this
-       $this -> id = $$args["id"]??'';
+       $this -> id = $args["id"]??null;
        $this-> titulo = $args["titulo"]??'';
        $this-> precio = $args["precio"]??'';
        $this -> imagen = $args["imagen"]??'';

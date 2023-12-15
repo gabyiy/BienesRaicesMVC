@@ -15,7 +15,7 @@ $router->get("/propriedades/crear",[PropriedadController::class,"crear"]);
 $router->post("/propriedades/crear",[PropriedadController::class,"crear"]);
 
 $router->get("/propriedades/actualizar",[PropriedadController::class,"actualizar"]);
-$router->post("/propriedades/actulizar",[PropriedadController::class,"actualizar"]);
+$router->post("/propriedades/actualizar",[PropriedadController::class,"actualizar"]);
 $router->post("/propriedades/eliminar",[PropriedadController::class,"eliminar"]);
 
 
