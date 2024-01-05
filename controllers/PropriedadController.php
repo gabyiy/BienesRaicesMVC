@@ -14,6 +14,7 @@ class PropriedadController{
         //asa facem sa ne aduca functi all(care ne arata toate proprietatile) 
         //care este conectata la baza de date
         $propriedades =   Propriedad::all();
+        $vendedores = Vendedor::all();
 
         //si asa scoate mesajul pe care il primim din crear.php , iar daca nu exista sa fie null
 $resultado = $_GET["resultado"]?? null;
@@ -22,8 +23,10 @@ $resultado = $_GET["resultado"]?? null;
         //si aici spunem la pagina sa faca render ,si datele carele o sa le trimitem la ruter de la views
         $router->render("propriedades/admin",[
             "propriedades"=>$propriedades,
+            "vendedores"=>$vendedores,
             "resultado"=>$resultado
         ]);
+
       
     }
     public static function crear(Router $router){
@@ -160,6 +163,27 @@ $propriedad->guardar();
 
 
         ]);
+    }
+    public static function eliminar ( ){
+        if($_SERVER["REQUEST_METHOD"]==="POST"){
+            $id= $_POST["id"];
+            //iar aici il transformam in int
+            $id=filter_var($id,FILTER_VALIDATE_INT);
+        
+            //aici facem diferenta de ce primim la post (fie name propriedad sau vendedor ),asa putem sterge
+            //ori proprietatea ori vanzatoru
+        
+        
+            $tipo = $_POST['tipo'];
+        
+            if(validarTipoContenido($tipo)){
+        
+                $proprieda = Propriedad::find($id);
+        
+                $proprieda->eliminar();
+        
+        }
+    }
     }
 }
 

@@ -115,7 +115,7 @@ if($resultado){
          if($resultado){
             //facem un redirect si in acelasi timp setam resultadu la 3 pe care o sa il utilizam
             //sa comprobam daca este 3 sa ne apara mesaju ca proprietatea a fost stearsa
-            header("Location : /admin?resultado=3");
+            header("Location: /admin?resultado=3");
         }
    }
 
@@ -223,12 +223,11 @@ public static function get ($cantidad){
 //Cauta o proprietate in functie de id
 public static function find($id){
    //Consultam sa vedem ce vanzatori avem , si utilizam aceaeasi functi consultarSql pentru a transforma rezultatu in obiect
-
-$query = "SELECT * FROM   " . static::$tabla . " where id ={$id}" ;
-
+$query = "SELECT * FROM   " . static::$tabla . " where id = {$id}" ;
 $resultado =self::consultarSQL($query);
 //cu array shift spunem ca vrem sa ne arate doar prima pozitie a arraiului
 return array_shift($resultado);
+
 }
 
 

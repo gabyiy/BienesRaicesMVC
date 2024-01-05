@@ -13,7 +13,7 @@
 <?php } ?>
 
         <a href="/propriedades/crear" class="boton boton-verde">Nueva Propriedad</a>
-        <a href="/vendedores/crear.php" class="boton boton-amarillo">Nuevo(a) Vendedor</a>
+        <a href="/vendedores/crear" class="boton boton-amarillo">Nuevo(a) Vendedor</a>
 
         <h2>Propriedades</h2>
         <table class="propiedades">
@@ -38,7 +38,7 @@
                 <td><img src="../imagenes/<?php echo  $propriedad->imagen;?>" class="imagen-tabla" alt=""></td>
                 <td><?php echo $propriedad->precio;?></td>
                 <td>
-                    <form action="" method="POST" class="w-100">
+                    <form  method="POST" class="w-100" action="/propriedades/eliminar">
 
                     <!-- aici folosim un input cu id proprietati pe care dorim sa o eliminam
                  folosim type hidden ca sa ne ascunda input si sa nu apara valoarea -->
@@ -51,6 +51,48 @@
 
                     <!-- Asa specificam la proprieda vrem sa merge ca sa actualizam trecandui idul -->
                     <a href="/propriedades/actualizar?id=<?php echo $propriedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
+        </td>
+            </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+        </table>
+        <h2>Vendedores</h2>
+        <table class="propiedades">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Acciones</th>
+             
+
+        </tr>
+
+        </thead>
+        <!-- Monstram datele care sunt salvate intru obict( de asta folosim foreach)-->
+        <tbody>
+            <?php foreach($vendedores as $vendedor): ?>
+
+            <tr>
+                <td><?php echo $vendedor->id;?></td>
+                <td><?php echo $vendedor->nombre . $vendedor->apellido; ?></td>
+                <td><?php echo $vendedor->telefono; ?></td>
+
+                <td>
+                    <form method="POST" class="w-100" action="/vendedores/eliminar">
+
+                    <!-- aici folosim un input cu id proprietati pe care dorim sa o eliminam
+                 folosim type hidden ca sa ne ascunda input si sa nu apara valoarea -->
+                <input type="hidden" name="id" value="<?php  echo $vendedor->id;?>">
+                <input type="hidden" name="tipo" value="vendedor">
+
+                    <input type="submit" class="boton-rojo-block" value="Eliminar">
+
+            </form>
+
+                    <!-- Asa specificam la proprieda vrem sa merge ca sa actualizam trecandui idul -->
+                    <a href="/vendedores/actualizar?id=<?php echo $propriedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
         </td>
             </tr>
             <?php endforeach; ?>
