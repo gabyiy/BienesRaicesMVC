@@ -3,9 +3,13 @@
 <?php 
 //asa acesam tot ce avem in app.php (conexiune la baza de date etc)
 require_once "../includes/app.php";
+
 use  MVC\Router;
 use Controllers\PropriedadController;
 use Controllers\VendedorController;
+use Controllers\PaginasController;
+
+
 
 $router = new Router();
 
@@ -25,6 +29,20 @@ $router->post("/vendedores/crear",[VendedorController::class,"crear"]);
 $router->get("/vendedores/actualizar",[VendedorController::class,"actualizar"]);
 $router->post("/vendedores/actualizar",[VendedorController::class,"actualizar"]);
 $router->post("/vendedores/eliminar",[VendedorController::class,"eliminar"]);
+
+//paginilepe care le pot vizita useri
+//nu putem avea doua adrese cu acelasi nume
+
+$router->get("/",[PaginasController::class,"index"]);
+$router->get("/nosotros",[PaginasController::class,"nosotros"]);
+$router->get("/propriedades",[PaginasController::class,"prorpiedades"]);
+$router->get("/propriedad",[PaginasController::class,"propriedad"]);
+$router->get("/blog",[PaginasController::class,"blog"]);
+$router->get("/entrada",[PaginasController::class,"entrada"]);
+$router->get("/contacto",[PaginasController::class,"contacto"]);
+$router->post("/contacto",[PaginasController::class,"contacto"]);
+
+
 
 
 

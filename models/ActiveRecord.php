@@ -210,9 +210,10 @@ $query ="SELECT  * FROM " . static::$tabla;
 
 //aceasta functie o folosim ca sa ne arate doar 3 proprietati pe pagin principala
 // o putem folsi sa ne arate unu numar determinat de registre
+//o folosim de exemplu in index din views paginas
 
 public static function get ($cantidad){
-   $query ="SELECT  * FROM " . " LIMIT " . $cantidad;
+   $query ="SELECT  * FROM " . static::$tabla . " LIMIT " . $cantidad;
 
  $resultado =self::consultarSQL($query);
 
