@@ -17,6 +17,12 @@ class Router {
 
     public function comprobarRutas() {
 
+        session_start();
+$auth = $_SESSION["login"]?? null;
+
+        //Array de rute protejate
+        $rutas_protegidas= ["/admin", "/propriedades/crear", "/propriedades/actualizar", '/propriedades/eliminar',"/vendedores/crear","/vendedores/actualizar","/vendedores/eliminar"];
+
         //pentru a verifica pathu url ,daca nu este cel dorit sa ne trimita la main
         $urlActual=$_SERVER["PATH_INFO"]??"/";
         $metodo= $_SERVER["REQUEST_METHOD"];
@@ -28,6 +34,11 @@ class Router {
         }else{
             $fn= $this->rutasPOST[$urlActual]?? null;
         }
+        //Protejam rutele
+        if(in_array($urlActual,$rutas_protegidas) && !$auth){
+            header("Location: /");
+        }
+
         //daca avem o ruta care are adresa din url
         if($fn){
             //asa specificam sa chem acea functie ,chiar daca nu stim cum se numeste

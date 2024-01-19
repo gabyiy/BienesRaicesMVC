@@ -1,7 +1,11 @@
 <main class="contenedor seccion">
         <h1>Contacto</h1>
+        <?php
+        if($mensaje){
+            echo "<p class='alerta exito'>" . $mensaje . "</p>";
 
-      
+        }
+?>
             <img loading="lazy" src="build/img/destacada3.jpg" alt="Imagen Contacto">
 
         <h2>Llene el formulario de Contacto</h2>
@@ -13,12 +17,8 @@
                 <label for="nombre">Nombre</label>
                 <input type="text" placeholder="Tu Nombre" id="nombre" name="contacto[nombre]" required>
 
-                <label for="email">E-mail</label>
-                <input type="email" placeholder="Tu Email" id="email" name="contacto[email]" required>
-
-                <label for="telefono">Teléfono</label>
-                <input type="tel" placeholder="Tu Teléfono" id="telefono" name="contacto[telefono]">
-
+               
+              
                 <label for="mensaje">Mensaje:</label>
                 <textarea id="mensaje" name="contacto[mensaje]" required></textarea>
             </fieldset>
@@ -52,12 +52,8 @@
                     <input name="contacto[contacto]" type="radio" value="email" id="contactar-email" required>
                 </div>
 
-                <p>Si eligió teléfono, elija la fecha y la hora</p>
-
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="contacto[fecha]" />
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora" min="09:00" max="18:00" name="comtacto[hora]"/>
+                <div id="contacto"></div>
+             
 
             </fieldset>
 

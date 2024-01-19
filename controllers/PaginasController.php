@@ -54,6 +54,8 @@ class PaginasController{
     }
     public static function contacto(Router $router){
 
+            //creem variabila pe care o von fosi in fuctie daca am trimis mailu sau nu corect
+    $mensaje = null;
         if($_SERVER["REQUEST_METHOD"]==="POST"){
 
             //aici salvam toate datele care le primim de la formular
@@ -85,16 +87,24 @@ class PaginasController{
             $contenido = "<html>";
            $contenido .=" <p>Tienes un nuevo mensaje </p>";
            $contenido.= "<p>Nombre: " . $respuestas["nombre"] . "</p>";
-           $contenido.= "<p>Email: " . $respuestas["email"] . "</p>";
-           $contenido.= "<p>Telefono: " . $respuestas["telefono"] . "</p>";
+           //trimitem de forma conditionala anumite campuri cum ar if email sau telefon
+           if($respuestas["contacto"]==="telefono"){
+            $contenido.= "<p> Elegio ser contactado por telefono" . "</p>";
+            $contenido.= "<p>Telefono: " . $respuestas["telefono"] . "</p>";
+            $contenido.= "<p>Fecha contacto: " . $respuestas["fecha"] . "</p>";
+            $contenido.= "<p>Hora contacto: " . $respuestas["hora"] . "</p>";
+ 
+           }
+           if($respuestas["contacto"]==="email"){
+            $contenido.= "<p> Elegio ser contactado por email" . "</p>";
+            $contenido.= "<p>Email: " . $respuestas["email"] . "</p>";
+
+           }
            $contenido.= "<p>Mensaje: " . $respuestas["mensaje"] . "</p>";
            $contenido.= "<p>Tipo: " . $respuestas["tipo"] . "</p>";
            $contenido.= "<p>Precio: " . "$" .$respuestas["precio"] . "</p>";
            $contenido.= "<p>Prefiere ser contacto por: " . $respuestas["contacto"] . "</p>";
-           $contenido.= "<p>Fecha contacto: " . $respuestas["fecha"] . "</p>";
-           $contenido.= "<p>Hora contacto: " . $respuestas["hora"] . "</p>";
-
-
+       
 
 
            $contenido .= " </html>";
@@ -104,13 +114,13 @@ class PaginasController{
             //send ne da un true sau false ,asa putem utiliza un if
         if( $mail->send())
             {
-                echo "Mensaje enviado corectamete";
+                $mensaje= "Mensaje enviado corectamete";
         }else{
-            echo "El mensaje no se pudo enviar";
+            $mensaje= "El mensaje no se pudo enviar";
         };
         }
 $router->render("paginas/contacto",[
-
+    "mensaje"=>$mensaje
 ]);
     }
 
